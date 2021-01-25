@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>state</title>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+    <!-- 引入react核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入react-dom,用于支持react操作Dom -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel,用于将jsx转为js -->
+    <script src="../js/babel.min.js"></script>
+    <script type="text/babel">
+        // 1.创建组件
+    class Weather extends React.Component{
+        constructor(props){
+            super(props)
+            // 初始化状态
+            this.state = {isHot:true}
+            this.nice = this.test.bind(this)
+        }
+        render(){
+            const {isHot} = this.state
+            return <h1 onClick={this.nice}>今天天气很{isHot?'炎热':'凉爽'}</h1>
+        }
+        test(){
+            // changeWeather放在哪里? —— Weather的原型对象上，供实例使用
+            // 通过Weather实例调用changeWeather时，changeWeather中的this就是Weather
+            // 由于changeWeather时作为onClick的回掉，所以不是通过实例调用的，是直接调用
+            // 又因为类内部隐式开启了严格模式，所以changeWeather中的this为undefined
+            console.log(this)
+            this.state.isHot = !this.state.isHot
+        }
+    }
+    // 2.渲染组件到页面
+    ReactDOM.render(<Weather/>,document.getElementById('test'))
+
+    // 👇不规范，用于测试
+    // const w = new Weather()
+    // w.changeWeather()
+
+    // const title = document.getElementById('title')
+    // title.addEventListener('click',()=>{
+    //     console.log('标题被点击了')
+    // })
+    // const title = document.getElementById('title')
+    // title.onclick=()=>{
+    //     console.log('标题被点击了')
+    // }
+    
+    </script>
+</body>
+
+</html>
