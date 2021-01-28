@@ -18,6 +18,7 @@
 <body>
     <!-- 准备好一个容器 -->
     <div id="test"></div>
+    <div id="test1"></div>
     <!-- 引入react核心库 -->
     <script src="../js/react.development.js"></script>
     <!-- 引入react-dom,用于支持react操作Dom -->
@@ -39,7 +40,10 @@
             )
         }
     }
+    const p = {name:'老李',age:18,sex:'男'}
+    console.log('@',...p)
     ReactDOM.render(<Person name="tom" age="18" sex="女" />,document.getElementById('test'))
+    ReactDOM.render(<Person {...p} />,document.getElementById('test1'))
     </script>
 </body>
 
