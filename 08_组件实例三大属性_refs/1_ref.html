@@ -17,18 +17,22 @@
     <script src="../js/babel.min.js"></script>
     <script type="text/babel"> /* 此处一定要写babel */
     class Demo extends React.Component{
+        // 展示左侧输入框的数据
+        showData=()=>{
+            console.log(this);
+        }
         render(){
             return (
                 <div>
-                    <input type="text" placeholder="点击按钮提示" />&nbsp;
-                    <button>点我提示左侧数据</button>&nbsp;
+                    <input ref="input1" type="text" placeholder="点击按钮提示" />&nbsp;
+                    <button onClick={this.showData}>点我提示左侧数据</button>&nbsp;
                     <input type="text" placeholder="失去焦点提示数据" />
                 </div>
             )
         }
     }
     // 渲染组件到页面
-    ReactDOM.render(<Demo/>,document.getElementById('test'))
+    ReactDOM.render(<Demo a="1" />,document.getElementById('test'))
     </script>
 </body>
 
