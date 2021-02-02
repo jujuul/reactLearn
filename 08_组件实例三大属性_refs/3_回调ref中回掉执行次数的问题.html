@@ -11,7 +11,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>1_ref</title>
+    <title>3ref回掉的次数</title>
 </head>
 
 <body>
@@ -25,28 +25,34 @@
     <script src="../js/babel.min.js"></script>
     <script type="text/babel"> /* 此处一定要写babel */
     class Demo extends React.Component{
-        // 展示左侧输入框的数据
-        showData=()=>{
+        state = {isHot:false}
+        showInfo = ()=>{
             const {input1} = this
             alert(input1.value)
-        } 
-        // 展示右侧输入框的数据
-        showData2=()=>{
-            const {input2} = this
-            alert(input2.value)
         }
-        render(){
-            return (
+        changeWeather=()=>{
+            const {isHot} = this.state
+            this.setState({isHot:!isHot})
+        }
+        saveInput=(c)=>{
+            this.input1=c;
+            console.log('@',c)
+        }
+        render(){      
+            const {isHot} = this.state      
+            return(
                 <div>
-                    <input ref={c=>this.input1 = c} type="text" placeholder="点击按钮提示" />&nbsp;
-                    <button ref="button100" onClick={this.showData}>点我提示左侧数据</button>&nbsp;
-                    <input onBlur={ this.showData2 } ref={c => this.input2 = c } type="text" placeholder="失去焦点提示数据" />
+                    <h2>今天天气很{isHot?'炎热':'凉爽'}</h2>
+                    {/*<input ref={(c)=>{this.input1=c;console.log('@',c)}} type="text" />&nbsp;*/}
+                    <input ref={this.saveInput} type="text"/><br/><br/>
+                    <button onClick={this.showInfo}>点我提示输入的数据</button>&nbsp;
+                    <button onClick={this.changeWeather}>点我切换天气</button>
                 </div>
             )
         }
     }
     // 渲染组件到页面
-    ReactDOM.render(<Demo a="1" b="2" />,document.getElementById('test'))
+    ReactDOM.render(<Demo/>,document.getElementById('test'))
     </script>
 </body>
 
