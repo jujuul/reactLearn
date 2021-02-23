@@ -10,7 +10,7 @@ export default class index extends Component {
     // 发送网络请求
     axios.get(`/api1/search/users?q=${keyWord}`).then(
       (res) => {
-        console.log("成功了", res.data);
+        this.props.saveUsers(res.data.items);
       },
       (err) => {
         console.log("成功了", err);
