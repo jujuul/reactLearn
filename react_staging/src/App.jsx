@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Header from "./component/Header";
@@ -25,12 +25,12 @@ export default class App extends Component {
               </a> */}
 
               {/* 在react中，靠路由链接切换不同的组件--编写路由链接 */}
-              <Link className="list-group-item" to="/about">
+              <NavLink activeClassName="demo" className="list-group-item" to="/about">
                 About
-              </Link>
-              <Link className="list-group-item" to="/home">
+              </NavLink>
+              <NavLink activeClassName="demo" className="list-group-item" to="/home">
                 Home
-              </Link>
+              </NavLink>
             </div>
           </div>
           <div className="col-xs-6">
