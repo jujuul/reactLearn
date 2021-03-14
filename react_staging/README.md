@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-02-09 18:18:44
+ * @LastEditTime: 2021-03-14 17:52:46
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit 
+ * @FilePath: \react\react_staging\README.md
+-->
 ## 三、路由的基本使用
 
     1.明确好界面中的导航区、展示区
@@ -30,3 +38,29 @@
                     params: {}
                     path: "/about"
                     url: "/about"
+## 五、NavLink与封装NavLink
+        1.NavLink可以实现路由链接的高亮，通过activeClassName指定样式名
+        2.标签内容是一个特殊的标签属性
+        3.通过this.props.children可以获取标签体内容
+## 六、Switch的使用
+        1.通常情况下，path和component是一一对应的关系
+        2.Switch可以提高路由匹配效率（单一匹配）
+## 七、解决多级路径刷新页面样式丢失的问题
+        1.public/index.html 中，引入样式时不写 ./ 写 / （常用）
+        2.public/index.html 中，引入样式时不写 ./ 写 %PUBLIC_URL% （常用）
+        3.使用HashRouter
+## 八、路由的严格匹配与模糊匹配
+        1.默认使用的是模糊匹配（简单记：【输入的路径】必须包含要【匹配的路径】，且顺序一致）
+        2.开启严格匹配：<Route exact={true} path="/about" component={About}>
+        3.严格匹配不要随便开启，需要再开，有些时候开启会导致无法继续匹配二级路由
+## 九、Redirect的使用
+        1.一般写在所有路由注册的最下方，当所有路由都无法匹配时，跳转到Redirect指定的路由
+        2.具体编码：
+            <Switch>
+                <Route path="/about" component={About} />
+                <Route path="/home" component={Home} />
+                <Redirect to="/home" />
+            </Switch>
+## 十、嵌套路由
+        1.注册子路由时要写上父路由的path值
+        2.路由的匹配是按照注册路由的顺序进行的
