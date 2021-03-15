@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import qs from 'querystring'
+import qs from 'querystring'
 
 const DetailData = [
     { id: '01', content: '你好，中国' },
@@ -9,10 +9,9 @@ const DetailData = [
 export default class Detail extends Component {
     render() {
         // 接收search参数
-        // const { search } = this.props.location
-        // const { id, title } = qs.parse(search.slice(1))
-        // 接收state参数
-        const { id, title } = this.props.location.state || {}
+        const { search } = this.props.location
+        const { id, title } = qs.parse(search.slice(1))
+
         const findResult = DetailData.find((detailObj) => {
             return detailObj.id === id
         })
@@ -20,7 +19,7 @@ export default class Detail extends Component {
             <ul>
                 <li>ID:{id}</li>
                 <li>TITLE:{title}</li>
-                <li>CONTENT:{findResult?.content}</li>
+                <li>CONTENT:{findResult.content}</li>
             </ul>
         )
     }
